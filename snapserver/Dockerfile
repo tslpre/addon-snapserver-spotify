@@ -8,7 +8,7 @@ RUN \
     apk add --no-cache --virtual .build-dependencies \
         build-base=0.5-r3 \
         cargo=1.60.0-r2 \
-        git=2.36.3-r0 \
+        git \
         protobuf-dev=3.18.1-r3 \
         pulseaudio-dev=15.0-r2 \
     \
@@ -22,7 +22,7 @@ RUN \
         --root /usr \
         --bin librespot \
         --version 0.4.2 \
-        --verbose \ 
+        --verbose \
         -- librespot \
     \
     && apk del --no-cache --purge .build-dependencies \

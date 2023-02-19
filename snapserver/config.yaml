@@ -3,8 +3,8 @@ name: snapcast-server
 version: dev
 slug: snapcastserver
 description: Create a snapcast server
-url: https://github.com/Art-Ev/addon-snapserver
-codenotary: arthur@evrard.dev
+url: https://github.com/rwjack/addon-snapserver
+codenotary: jack@cthd.icu
 arch:
   - aarch64
   - amd64
@@ -15,31 +15,44 @@ map: ["share:rw"]
 audio: true
 init: false
 options:
-  streams: "source = spotify:///librespot?name=Spotify&bitrate=320"
+  server_datadir: "/data/snapserver/"
+  server_threads: -1
+  spotify_stream: "stream = spotify:///librespot?name=Spotify"
+  spotify_username: ""
+  spotify_password: ""
+  spotify_device_name: "HA_Spotcast"
+  spotify_bitrate: 320
+  spotify_volume: 100
   buffer: 1000
   codec: "flac"
   send_to_muted: "false"
   sampleformat: "48000:16:2"
   http_enabled: "true"
+  http_doc_root: "/usr/share/snapserver/snapweb"
   tcp_enabled: "true"
   logging_enabled: "true"
-  server_threads: -1
-  server_datadir: "/usr/share/snapserver/snapweb"
 schema:
-  streams: str
+  server_datadir: str
+  server_threads: int
+  spotify_stream: str
+  spotify_username: str
+  spotify_password: password
+  spotify_device_name: str
+  spotify_bitrate: int
+  spotify_volume: int
+  streams: str?
+  stream_bis: str?
+  stream_ter: str?
   buffer: int
   codec: str
   send_to_muted: str
   sampleformat: str
   http_enabled: str
+  http_doc_root: str
   tcp_enabled: str
   logging_enabled: str
-  server_threads: int
-  server_datadir: str
-  stream_bis: str?
-  stream_ter: str?
 ports:
   1704/tcp: 1704
   1705/tcp: 1705
   1780/tcp: 1780
-  4953/tcp: 4953
+  #4953/tcp: 4953
