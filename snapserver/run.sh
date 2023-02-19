@@ -12,7 +12,7 @@ fi
 bashio::log.info "Populating snapserver.conf..."
 
 # Server Config
-echo "[server]" >> "${config}"
+echo "[server]" > "${config}"
 
 # Threads
 threads=$(bashio::config 'server_threads')
@@ -23,7 +23,7 @@ datadir=$(bashio::config 'server_datadir')
 echo "datadir = ${datadir}" >> "${config}"
 
 # Stream Config
-echo "[stream]" > "${config}"
+echo "[stream]" >> "${config}"
 
 # Spotify
 spotify_stream=$(bashio::config 'spotify_stream')
