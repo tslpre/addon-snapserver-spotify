@@ -28,7 +28,7 @@ fi
 echo "[stream]" >> "${config}"
 
 # Spotify
-echo "stream = spotify:///librespot?name=Spotify" >> "${config}"
+echo -n "stream = spotify:///librespot?name=Spotify" >> "${config}"
 echo -n "&username=$(bashio::config 'spotify.username')" >> "${config}"
 echo -n "&password=$(bashio::config 'spotify.password')" >> "${config}"
 echo -n "&devicename=$(bashio::config 'spotify.device_name')" >> "${config}"
