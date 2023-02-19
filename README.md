@@ -1,4 +1,4 @@
-# Home Assistant Community Add-on: Snapcast
+# Home Assistant Community Add-on: Snapcast Server + librespot
 
 [![GitHub Release][releases-shield]][releases]
 ![Project Stage][project-stage-shield]
