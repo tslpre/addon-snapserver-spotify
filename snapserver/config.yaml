@@ -14,42 +14,54 @@ map: ["share:rw"]
 audio: true
 init: false
 options:
-  server_datadir: "/data/snapserver/"
-  server_threads: -1
-  spotify_stream: "stream = spotify:///librespot?name=Spotify"
-  spotify_username: ""
-  spotify_password: ""
-  spotify_device_name: "HA_Snapcast"
-  spotify_bitrate: 320
-  spotify_volume: 100
-  buffer: 1000
-  codec: "flac"
-  send_to_muted: "false"
-  sampleformat: "48000:16:2"
-  http_enabled: "true"
-  http_doc_root: "/usr/share/snapserver/snapweb"
-  tcp_enabled: "true"
-  logging_enabled: "true"
+  server:
+    threads: "-1"
+    datadir: "/data/snapserver/"
+  spotify:
+    username: ""
+    password: ""
+    device_name: "HA_Snapcast"
+    bitrate: 320
+    volume: 100
+  stream:
+    buffer: 1000
+    codec: "flac"
+    send_to_muted: false
+    sampleformat: "48000:16:2"
+  http:
+    enabled: true
+    bind_to_address: "0.0.0.0"
+  tcp:
+    enabled: true
+  logging:
+    enabled: false
 schema:
-  server_datadir: str?
-  server_threads: int?
-  spotify_stream: str?
-  spotify_username: str
-  spotify_password: password
-  spotify_device_name: str
-  spotify_bitrate: list(96|160|320)?
-  spotify_volume: int?
-  streams: str?
-  stream_bis: str?
-  stream_ter: str?
-  buffer: int?
-  codec: str?
-  send_to_muted: str?
-  sampleformat: str?
-  http_enabled: str?
-  http_doc_root: str?
-  tcp_enabled: str?
-  logging_enabled: str?
+  server:
+    datadir: str
+    threads: int?
+  spotify:
+    username: str
+    password: password
+    device_name: str
+    bitrate: list(96|160|320)
+    volume: int(0,100)
+  stream:
+    streams: str?
+    bis: str?
+    ter: str?
+    buffer: int?
+    codec: str?
+    send_to_muted: bool?
+    sampleformat: str?
+  http:
+    enabled: bool?
+    bind_to_address: str?
+    doc_root: str?
+  tcp:
+    enabled: bool?
+  logging:
+    enabled: bool?
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?
 ports:
   1704/tcp: 1704
   1705/tcp: 1705

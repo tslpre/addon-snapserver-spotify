@@ -15,84 +15,89 @@ bashio::log.info "Populating snapserver.conf..."
 echo "[server]" > "${config}"
 
 # Threads
-threads=$(bashio::config 'server_threads')
-echo "threads = ${threads}" >> "${config}"
+if bashio::config.has_value 'server.threads'; then
+    echo "threads = $(bashio::config 'server.threads')" >> "${config}"
+fi
 
 # Datadir
-datadir=$(bashio::config 'server_datadir')
-echo "datadir = ${datadir}" >> "${config}"
+if bashio::config.has_value 'server.datadir'; then
+    echo "datadir = $(bashio::config 'server.datadir')" >> "${config}"
+fi
 
 # Stream Config
 echo "[stream]" >> "${config}"
 
 # Spotify
-spotify_stream=$(bashio::config 'spotify_stream')
-echo -n "${spotify_stream}" >> "${config}"
-
-spotify_username=$(bashio::config 'spotify_username')
-echo -n "&username=${spotify_username}" >> "${config}"
-spotify_password=$(bashio::config 'spotify_password')
-echo -n "&password=${spotify_password}" >> "${config}"
-spotify_device_name=$(bashio::config 'spotify_device_name')
-echo -n "&devicename=${spotify_device_name}" >> "${config}"
-spotify_bitrate=$(bashio::config 'spotify_bitrate')
-echo -n "&bitrate=${spotify_bitrate}" >> "${config}"
-spotify_volume=$(bashio::config 'spotify_volume')
-echo -n "&volume=${spotify_volume}" >> "${config}"
-
+echo "stream = spotify:///librespot?name=Spotify" >> "${config}"
+echo -n "&username=$(bashio::config 'spotify.username')" >> "${config}"
+echo -n "&password=$(bashio::config 'spotify.password')" >> "${config}"
+echo -n "&devicename=$(bashio::config 'spotify.device_name')" >> "${config}"
+echo -n "&bitrate=$(bashio::config 'spotify.bitrate')" >> "${config}"
+echo -n "&volume=$(bashio::config 'spotify.volume')" >> "${config}"
 echo "" >> "${config}"
 
 # Other streams
-if bashio::config.has_value 'streams'; then
-    streams=$(bashio::config 'streams')
-    echo "${streams}" >> "${config}"
+if bashio::config.has_value 'stream.streams'; then
+    echo "stream = $(bashio::config 'stream.streams')" >> "${config}"
 fi
 
-# Stream bis and ter
-if bashio::config.has_value 'stream_bis'; then
-    stream_bis=$(bashio::config 'stream_bis')
-    echo "${stream_bis}" >> "${config}"
+# Stream bis and ter # it was in the fork, idk wtf it's for
+if bashio::config.has_value 'stream.bis'; then
+    echo "$(bashio::config 'stream.bis')" >> "${config}"
 fi
-if bashio::config.has_value 'stream_ter'; then
-    stream_ter=$(bashio::config 'stream_ter')
-    echo "${stream_ter}" >> "${config}"
+if bashio::config.has_value 'stream.ter'; then
+    echo "$(bashio::config 'stream.ter')" >> "${config}"
 fi
 
 # Buffer
-buffer=$(bashio::config 'buffer')
-echo "buffer = ${buffer}" >> "${config}"
+if bashio::config.has_value 'stream.buffer'; then
+    echo "buffer = $(bashio::config 'stream.buffer')" >> "${config}"
+fi
 
 # Codec
-codec=$(bashio::config 'codec')
-echo "codec = ${codec}" >> "${config}"
+if bashio::config.has_value 'stream.codec'; then
+    echo "codec = $(bashio::config 'stream.codec')" >> "${config}"
+fi
 
 # Muted
-muted=$(bashio::config 'send_to_muted')
-echo "send_to_muted = ${muted}" >> "${config}"
+if bashio::config.has_value 'stream.send_to_muted'; then
+    echo "send_to_muted = $(bashio::config 'stream.send_to_muted')" >> "${config}"
+fi
 
 # Sampleformat
-sampleformat=$(bashio::config 'sampleformat')
-echo "sampleformat = ${sampleformat}" >> "${config}"
+if bashio::config.has_value 'stream.sampleformat'; then
+    echo "sampleformat = $(bashio::config 'stream.sampleformat')" >> "${config}"
+fi
 
 # HTTP
-http=$(bashio::config 'http_enabled')
 echo "[http]" >> "${config}"
-echo "enabled = ${http}" >> "${config}"
-echo "bind_to_address = ::" >> "${config}"
+
+if bashio::config.has_value 'http.enabled'; then
+    echo "enabled = $(bashio::config 'http.enabled')" >> "${config}"
+fi
+
+if bashio::config.has_value 'http.bind_to_address'; then
+    echo "bind_to_address = $(bashio::config 'http.bind_to_address')" >> "${config}"
+fi
 
 # HTTP document root
-http_doc_root=$(bashio::config 'http_doc_root')
-echo "doc_root = ${http_doc_root}" >> "${config}"
+if bashio::config.has_value 'http.doc_root'; then
+    echo "doc_root = $(bashio::config 'http.doc_root')" >> "${config}"
+fi
 
 # TCP
 echo "[tcp]" >> "${config}"
-tcp=$(bashio::config 'tcp_enabled')
-echo "enabled = ${tcp}" >> "${config}"
+
+if bashio::config.has_value 'tcp.enabled'; then
+    echo "enabled = $(bashio::config 'tcp.enabled')" >> "${config}"
+fi
 
 # Logging
 echo "[logging]" >> "${config}"
-logging=$(bashio::config 'logging_enabled')
-echo "debug = ${logging}" >> "${config}"
+
+if bashio::config.has_value 'logging.enabled'; then
+    echo "debug = $(bashio::config 'logging.enabled')" >> "${config}"
+fi
 
 bashio::log.info "Starting SnapServer..."
 
