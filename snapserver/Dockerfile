@@ -6,14 +6,14 @@ ENV LANG C.UTF-8
 
 RUN \
     apk add --no-cache --virtual .build-dependencies \
-        build-base=0.5-r3 \
-        cargo=1.60.0-r2 \
+        build-base \
+        cargo \
         git \
-        protobuf-dev=3.18.1-r3 \
-        pulseaudio-dev=15.0-r2 \
+        protobuf-dev \
+        pulseaudio-dev \
     \
     && apk add --no-cache \
-        pulseaudio=15.0-r2 \
+        pulseaudio \
     \
     && cargo install \
         --locked \

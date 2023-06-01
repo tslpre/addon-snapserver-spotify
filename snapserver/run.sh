@@ -34,6 +34,7 @@ echo -n "&password=$(bashio::config 'spotify.password')" >> "${config}"
 echo -n "&devicename=$(bashio::config 'spotify.device_name')" >> "${config}"
 echo -n "&bitrate=$(bashio::config 'spotify.bitrate')" >> "${config}"
 echo -n "&volume=$(bashio::config 'spotify.volume')" >> "${config}"
+echo -n "&autoplay=true" >> "${config}"
 echo "" >> "${config}"
 
 # Other streams
