@@ -4,7 +4,7 @@ version: dev
 slug: snapcast-server-libspot
 description: Host a Snapcast server with librespot
 url: https://github.com/rwjack/addon-snapserver-spotify
-codenotary: jack@cthd.icu
+codenotary: jack@foss.family
 arch:
   - aarch64
   - amd64

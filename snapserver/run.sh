@@ -101,5 +101,4 @@ if bashio::config.has_value 'logging.enabled'; then
 fi
 
 bashio::log.info "Starting SnapServer..."
-
-/usr/bin/snapserver -c /etc/snapserver.conf
+exec snapserver

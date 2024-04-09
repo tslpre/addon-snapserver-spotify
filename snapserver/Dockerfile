@@ -4,6 +4,12 @@ FROM $BUILD_FROM
 # Add env
 ENV LANG C.UTF-8
 
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# Setup base
+ARG LIBRESPOT_VERSION="0.4.2"
+
 RUN \
     apk add --no-cache --virtual .build-dependencies \
         build-base \
@@ -21,7 +27,7 @@ RUN \
         --features pulseaudio-backend \
         --root /usr \
         --bin librespot \
-        --version 0.4.2 \
+        --version "${LIBRESPOT_VERSION}" \
         --verbose \
         -- librespot \
     \
@@ -33,7 +39,7 @@ RUN \
         /usr/.crates2.json
 
 #Install snapcast
-RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && apk add --no-cache snapcast bash
+RUN apk add --no-cache snapcast-server bash
 
 # Copy data for add-on
 COPY run.sh /
