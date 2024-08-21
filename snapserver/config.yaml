@@ -26,10 +26,10 @@ options:
     volume: 100
   stream:
     streams: "tcp://0.0.0.0:4953?name=TTS&codec=pcm&mode=server"
-    buffer: 1000
+    buffer: 3000
     codec: "flac"
-    send_to_muted: false
-    sampleformat: "48000:32:2"
+    send_to_muted: true
+    sampleformat: "48000:16:2"
   http:
     enabled: true
     bind_to_address: "0.0.0.0"
