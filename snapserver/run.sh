@@ -4,6 +4,7 @@ mkdir -p /share/snapfifo
 mkdir -p /share/snapcast
 
 config=/etc/snapserver.conf
+spotify_credentials_file=/data/librespot/credentials.json
 
 if ! bashio::fs.file_exists '/etc/snapserver.conf'; then
     touch /etc/snapserver.conf ||
@@ -28,13 +29,15 @@ fi
 echo "[stream]" >> "${config}"
 
 # Spotify
+echo $(bashio::config 'spotify.credentials') > ${spotify_credentials_file}
 echo -n "stream = spotify:///librespot?name=Spotify" >> "${config}"
-echo -n "&username=$(bashio::config 'spotify.username')" >> "${config}"
-echo -n "&password=$(bashio::config 'spotify.password')" >> "${config}"
 echo -n "&devicename=$(bashio::config 'spotify.device_name')" >> "${config}"
 echo -n "&bitrate=$(bashio::config 'spotify.bitrate')" >> "${config}"
 echo -n "&volume=$(bashio::config 'spotify.volume')" >> "${config}"
+echo -n "&cache=$(bashio::config 'spotify.cache_dir')" >> "${config}"
+echo -n "&cache-size-limit=$(bashio::config 'spotify.cache_size_limit')" >> "${config}"
 echo -n "&autoplay=true" >> "${config}"
+echo -n "&params=--disable-discovery" >> "${config}"
 echo "" >> "${config}"
 
 # Other streams
@@ -82,9 +85,7 @@ if bashio::config.has_value 'http.bind_to_address'; then
 fi
 
 # HTTP document root
-if bashio::config.has_value 'http.doc_root'; then
-    echo "doc_root = $(bashio::config 'http.doc_root')" >> "${config}"
-fi
+echo "doc_root = /usr/share/snapserver/snapweb/" >> "${config}"
 
 # TCP
 echo "[tcp]" >> "${config}"
