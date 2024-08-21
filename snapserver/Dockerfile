@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:16.2.1
+ARG BUILD_FROM
 FROM $BUILD_FROM
 
 # Add env

@@ -39,9 +39,9 @@ echo -n "&devicename=$(bashio::config 'spotify.device_name')" >> "${config}"
 echo -n "&bitrate=$(bashio::config 'spotify.bitrate')" >> "${config}"
 echo -n "&volume=$(bashio::config 'spotify.volume')" >> "${config}"
 echo -n "&cache=$(bashio::config 'spotify.cache_dir')" >> "${config}"
-echo -n "&cache-size-limit=$(bashio::config 'spotify.cache_size_limit')" >> "${config}"
 echo -n "&autoplay=true" >> "${config}"
-echo -n "&params=--disable-discovery" >> "${config}"
+#echo -n "&wd_timeout=3600" >> "${config}" # This might lead to uneccesary restarts if there are no log lines by librespot
+echo -n "&params=--disable-discovery" >> "${config}" #missing cache_size_limit
 echo "" >> "${config}"
 
 # Other streams
