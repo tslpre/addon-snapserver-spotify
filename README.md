@@ -10,6 +10,17 @@
 ![Supports amd64 Architecture][amd64-shield]
 ![Supports i386 Architecture][i386-shield]
 
+## Notes
+
+For gathering the oauth credentials file, use this: https://github.com/dspearson/librespot-auth
+
+And when configuring the addon, make sure you put the credentials between single quotes `'`
+
+e.g.
+```
+credentials: '{"username":"...","auth_type":1,"auth_data":"..."}'
+```
+
 ## Contributing
 
 This is an active open-source project. We are always open to people who want to
