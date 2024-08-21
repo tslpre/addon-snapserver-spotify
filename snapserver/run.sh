@@ -6,6 +6,10 @@ mkdir -p /share/snapcast
 config=/etc/snapserver.conf
 spotify_credentials_file=/data/librespot/credentials.json
 
+if ! [ -d /data/librespot ]; then
+    mkdir /data/librespot
+fi
+
 if ! bashio::fs.file_exists '/etc/snapserver.conf'; then
     touch /etc/snapserver.conf ||
         bashio::exit.nok "Could not create snapserver.conf file on filesystem"
