@@ -16,7 +16,7 @@ init: false
 options:
   server:
     threads: "-1"
-    datadir: "/data/snapserver/"
+    datadir: "/data/snapserver"
   spotify:
     credentials: ""
     device_name: "HA_Snapcast"
@@ -26,7 +26,7 @@ options:
     volume: 100
   stream:
     streams: "tcp://0.0.0.0:4953?name=TTS&codec=pcm&mode=server"
-    buffer: 3000
+    buffer: 1000
     codec: "flac"
     send_to_muted: true
     sampleformat: "48000:16:2"

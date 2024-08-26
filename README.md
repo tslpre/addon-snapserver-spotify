@@ -21,6 +21,8 @@ e.g.
 credentials: '{"username":"...","auth_type":1,"auth_data":"..."}'
 ```
 
+If you've enabled the librespot cache, make sure to exclude this addon from bacukps, as I haven't yet found a solution not to backup the cache dir.
+
 ## Contributing
 
 This is an active open-source project. We are always open to people who want to

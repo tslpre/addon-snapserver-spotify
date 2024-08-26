@@ -1,13 +1,12 @@
 #!/usr/bin/env bashio
 
-mkdir -p /share/snapfifo
-mkdir -p /share/snapcast
+#mkdir -p /share/snapfifo
 
 config=/etc/snapserver.conf
-spotify_credentials_file=/data/librespot/credentials.json
+spotify_credentials_file=$(bashio::config 'spotify.cache_dir')/credentials.json
 
-if ! [ -d /data/librespot ]; then
-    mkdir /data/librespot
+if ! [ -d $(bashio::config 'spotify.cache_dir') ]; then
+    mkdir $(bashio::config 'spotify.cache_dir')
 fi
 
 if ! bashio::fs.file_exists '/etc/snapserver.conf'; then
@@ -39,9 +38,10 @@ echo -n "&devicename=$(bashio::config 'spotify.device_name')" >> "${config}"
 echo -n "&bitrate=$(bashio::config 'spotify.bitrate')" >> "${config}"
 echo -n "&volume=$(bashio::config 'spotify.volume')" >> "${config}"
 echo -n "&cache=$(bashio::config 'spotify.cache_dir')" >> "${config}"
+echo -n "&cache-size-limit=$(bashio::config 'spotify.cache_size_limit')" >> "${config}"
 echo -n "&autoplay=true" >> "${config}"
 #echo -n "&wd_timeout=3600" >> "${config}" # This might lead to uneccesary restarts if there are no log lines by librespot
-echo -n "&params=--disable-discovery" >> "${config}" #missing cache_size_limit
+echo -n "&params=--disable-discovery" >> "${config}"
 echo "" >> "${config}"
 
 # Other streams
