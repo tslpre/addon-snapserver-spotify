@@ -2,7 +2,7 @@
 
 #mkdir -p /share/snapfifo
 
-if [[ $(bashio::config 'spotify.bypass_apresolve') ]]; then
+if [ "$(bashio::config 'spotify.bypass_apresolve')" = true ]; then
     echo "0.0.0.0	apresolve.spotify.com" >> /etc/hosts
 fi
 
