@@ -2,7 +2,9 @@
 
 #mkdir -p /share/snapfifo
 
-echo "0.0.0.0	apresolve.spotify.com" >> /etc/hosts
+if [[ $(bashio::config 'spotify.bypass_apresolve') ]]; then
+    echo "0.0.0.0	apresolve.spotify.com" >> /etc/hosts
+fi
 
 config=/etc/snapserver.conf
 spotify_credentials_file=$(bashio::config 'spotify.cache_dir')/credentials.json
