@@ -3,7 +3,7 @@ name: Snapcast Server + Librespot
 version: 2024.10.1
 slug: snapcast-server-libspot
 description: Host a Snapcast server with Librespot
-url: https://github.com/rwjack/addon-snapserver-spotify
+url: https://github.com/tslpre/addon-snapserver-spotify
 codenotary: jack@foss.family
 arch:
   - aarch64
